@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "324262767010",
+    "firebase_url": "https://collectiveapp-566a0.firebaseio.com",
+    "project_id": "collectiveapp-566a0",
+    "storage_bucket": "collectiveapp-566a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324262767010:android:bee241d13cd45f82d36afb",
+        "android_client_info": {
+          "package_name": "com.colmobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324262767010-pdi8tb90m14n8lht1t54mphlsqt0h2sm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0Nd9452vCGCP3QxEFJZVtIpohqhOYIKE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324262767010-pdi8tb90m14n8lht1t54mphlsqt0h2sm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
