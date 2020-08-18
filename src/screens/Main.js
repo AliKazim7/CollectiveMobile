@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
-
+import firestore from '@react-native-firebase/firestore'
 export default class Main extends React.Component{
 
     constructor(props){
@@ -11,15 +11,15 @@ export default class Main extends React.Component{
     }
 
     componentDidMount(){
-        // const db = firebase.firestore()
-        // const place = db.collection("Collections").get()
-        // .then(querySnapshot =>{
-        //   const data = querySnapshot.docs.map(doc => doc.data());
-        //   console.log("data collections", data)
-        // //   this.setState({
-        // //     results: data
-        // //   })
-        // })
+        const userRef = firestore().collection("Collections")
+        .get()
+        .then(querySnapshot => {
+            console.log('Total users: ', querySnapshot);
+
+            querySnapshot.forEach(documentSnapshot => {
+            console.log('User ID: ', documentSnapshot.data());
+            });
+        })
     }
 
     render(){
