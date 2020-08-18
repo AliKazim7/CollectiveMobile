@@ -8,7 +8,7 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:324262767010:android:bee241d13cd45f82d36afb",
+        "mobilesdk_app_id": "1:324262767010:android:ed4f8e540b0073e6d36afb",
         "android_client_info": {
           "package_name": "com.colmobile"
         }
@@ -30,6 +30,13 @@
             {
               "client_id": "324262767010-pdi8tb90m14n8lht1t54mphlsqt0h2sm.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "324262767010-ss8f6dtu7i43nplqt9e4idn5uh2sovbd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.colMobile"
+              }
             }
           ]
         }

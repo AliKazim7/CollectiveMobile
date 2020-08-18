@@ -6,7 +6,7 @@ export default class Main extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-
+            result : []
         }
     }
 
@@ -14,15 +14,15 @@ export default class Main extends React.Component{
         const userRef = firestore().collection("Collections")
         .get()
         .then(querySnapshot => {
-            console.log('Total users: ', querySnapshot);
-
-            querySnapshot.forEach(documentSnapshot => {
-            console.log('User ID: ', documentSnapshot.data());
-            });
+            const data = querySnapshot.docs.map(doc => doc.data())
+            this.setState({
+                result: data
+            })
         })
     }
 
     render(){
+        console.log("result here", this.state.result)
         return(
             <View>
                 <Text>dasda</Text>
