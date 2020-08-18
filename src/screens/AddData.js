@@ -3,6 +3,8 @@ import { Text, View, Image, ImagePickerIOS } from 'react-native'
 import { Container, Content, Card, CardItem, Title, Icon, Grid, Col, Thumbnail, Button, List, Item, Label, Input, Body, Picker } from 'native-base'
 import Upload from '../assests/index.png'
 import ImagePicker from 'react-native-image-picker'
+import storage from '@react-native-firebase/storage'
+import firestore from '@react-native-firebase/firestore'
 
 export default class AddData extends React.Component{
     constructor(props){
@@ -64,7 +66,7 @@ export default class AddData extends React.Component{
                         showImageView:true
                       });
                       setTimeout(function(){
-                          resolve(source)
+                          resolve(response)
                       }, 1000)
                     }
                   });
@@ -76,6 +78,19 @@ export default class AddData extends React.Component{
     uploadImage = async() =>{
         console.log("upload Image")
         const file = await this.onDrop("Photo")
+        console.log("file here", file)
+        if(file && file){
+            const uploadTasl = storage().ref(`image/${file.fileName}`).put(this.state.avatarSource)
+            if(uploadTasl){
+                const url = await storage().ref(`image/${file.fileName}`).getDownloadURL()
+                if(url){
+                    this.setState({
+                        url: url,
+                        attachedType:"Picture"
+                    })
+                }
+            }
+        }
     }
 
     uploadVideo = () =>{
@@ -126,12 +141,37 @@ export default class AddData extends React.Component{
         });
       }
 
-      updateProfile = () =>{
+      updateProfile = async() =>{
           console.log("values", this.state.categoryType, this.state.name, this.state.details, this.state.webLinks, this.state.url)
+        const updateProfile = await firestore().collection("Collections").add({
+            attachedType:this.state.attachedType,
+            type: this.state.categoryType,
+            name: this.state.name,
+            webLinks: this.state.webLinks,
+            details: this.state.details,
+            url:this.state.url
+        })
+        if(updateProfile){
+            firestore().collection("Collections").where("url", "==", this.state.url).get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+                    console.log("collection", doc)
+                  firestore().collection("Collections")
+                    .doc(doc.id)
+                    .update({
+                      collectionID: doc.id
+                    })
+                });
+              })
+              .then(resp => {
+                this.setState({
+        
+                })
+              });
+        }
       }
 
     render(){
-        console.log("value ", this.state.avatarSource, this.state.showIcon)
+        console.log("value ", this.state.avatarSource, this.state.url)
         return(
             <Container>
                 <Content>
@@ -214,8 +254,8 @@ export default class AddData extends React.Component{
                             </Picker>
                         </CardItem>
                         <CardItem footer>
-                            <Button primary onPress={this.updateProfile}>
-                                    <Text>Upload</Text>
+                            <Button primary full onPress={this.updateProfile}>
+                                    <Text style={{color:'white'}}>Upload</Text>
                             </Button>
                         </CardItem>
                     </Card>
