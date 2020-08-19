@@ -7,6 +7,7 @@ import { Image, StyleSheet } from 'react-native'
 import Upload from '../assests/index.png'
 // import Video from 'react-native-video'
 import { ScrollView } from 'react-native-gesture-handler'
+import VideoDisplay from '../components/VidePlayer/VideoDisplay'
 export default class Main extends React.Component{
 
     constructor(props){
@@ -42,7 +43,14 @@ export default class Main extends React.Component{
                                 </CardItem>
                                 <CardItem cardBody>
                                     <Body>
-                                        <Image source={{uri: item.url}} style={{width: '100%', height: 400}}/>
+                                        {
+                                            item.attachedType === "Picture"
+                                            ?
+                                            <Image source={{uri: item.url}} style={{width: '100%', height: 400}}/>
+                                            :
+                                            // <VideoDisplay Video={item.url} />
+                                            null
+                                        }
                                     </Body>
                                 </CardItem>
                                 <CardItem footer>
