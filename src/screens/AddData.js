@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, Image, ImagePickerIOS } from 'react-native'
-import { Container, Content, Card, CardItem, Title, Icon, Grid, Col, Thumbnail, Button, List, Item, Label, Input, Body, Picker } from 'native-base'
+import { Container, Content, Card, CardItem, Title, Icon, Grid, Col, Thumbnail, Button, List, Item, Label, Input, Body, Picker, Header } from 'native-base'
 import Upload from '../assests/index.png'
 import ImagePicker from 'react-native-image-picker'
 import storage from '@react-native-firebase/storage'
@@ -174,16 +174,16 @@ export default class AddData extends React.Component{
         console.log("value ", this.state.avatarSource, this.state.url)
         return(
             <Container>
+                <Header transparent>
+                    <Title>Add Post</Title>
+                </Header>
                 <Content>
                     <Card>
-                        <CardItem header>
-                            <Title> Add Post </Title>
-                        </CardItem>
                         <CardItem >
                               <Body>
                                     {
                                         this.state.showIcon ? 
-                                        <View style={{borderColor:'2px green', marginLeft:'35%', flex:1}}>
+                                        <View style={{borderColor:'2px green', marginLeft:'35%',marginTop:'10%', flex:1}}>
                                             <Button transparent onPress={this.uploadChange}>
                                                 <Thumbnail source={this.state.avatarSource  ? this.state.avatarSource : Upload} large style={{width:100}} />
                                             </Button>
@@ -240,9 +240,9 @@ export default class AddData extends React.Component{
                                     mode="dropdown"
                                     iosIcon={<Icon name="arrow-down" />}
                                     headerBackButtonText="Back!"                      
-                                    placeholder="Select your SIM"
+                                    placeholder="Select your Attachment Type"
                                     iosIcon={<Icon name="arrow-down" />}
-                                    placeholder="Select your SIM"
+                                    placeholder="Select your Attachment Type"
                                     selectedValue={this.state.categoryType}
                                     onValueChange={this.onValueChange.bind(this)}
                                 >
@@ -254,7 +254,7 @@ export default class AddData extends React.Component{
                             </Picker>
                         </CardItem>
                         <CardItem footer>
-                            <Button primary full onPress={this.updateProfile}>
+                            <Button style={{width:'100%'}} primary full onPress={this.updateProfile}>
                                     <Text style={{color:'white'}}>Upload</Text>
                             </Button>
                         </CardItem>
