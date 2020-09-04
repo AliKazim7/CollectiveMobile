@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Content, Grid, Col, Card, CardItem, Text, Left, Body, Row } from "native-base";
-import { Image } from "react-native";
+import { Image, ScrollView, TouchableOpacity } from "react-native";
 // import { Dimensions } from 'react-native';
 // const { width, height } = Dimensions
 import Upload from '../assests/fatima-tahir-1.jpg'
@@ -14,10 +14,11 @@ constructor(props){
     render(){
         return(
             <Container>
-                <Content>
-                    <Grid>
+                <ScrollView>
+                <Grid>
                         <Row>
                         <Col>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('PreView')}>
                             <Card>
                                 <CardItem header bordered>
                                     {/* <Left /> */}
@@ -34,6 +35,7 @@ constructor(props){
                                 }} />
                                 </CardItem>
                             </Card>
+                            </TouchableOpacity>
                         </Col>
                         </Row>
                         <Row>
@@ -97,7 +99,7 @@ constructor(props){
                         </Col>
                         </Row>
                     </Grid>
-                </Content>
+                </ScrollView>
             </Container>
         )
     }
